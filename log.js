@@ -94,6 +94,10 @@
     }
     return [str].concat(styles);
   };
-  window.log = log;
+  if (/Chrome/.test(navigator.userAgent)) {
+    window.log = log;
+  } else {
+    window.log = _log;
+  }
   window.log.l = _log;
 }).call(this);

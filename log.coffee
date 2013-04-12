@@ -73,5 +73,9 @@ stringToArgs = (str, args) ->
     [str].concat styles
 
 # Export
-window.log = log
+if /Chrome/.test navigator.userAgent # TODO - test for stylized log support instead
+    window.log = log
+else
+    window.log = _log
+
 window.log.l = _log
