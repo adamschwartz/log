@@ -72,10 +72,13 @@ stringToArgs = (str, args) ->
 
     [str].concat styles
 
-# Export
-if /Chrome/.test navigator.userAgent # TODO - test for stylized log support instead
-    window.log = log
-else
-    window.log = _log
+# TODO - replace these with a feature test
+isSafari = -> /Safari/.test(navigator.userAgent) and /Apple Computer/.test(navigator.vendor)
+isIE = -> /MSIE/.test(navigator.userAgent)
 
+# Export
+if isSafari() or isIE()
+    window.log = _log
+else
+    window.log = log
 window.log.l = _log

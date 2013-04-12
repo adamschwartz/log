@@ -1,5 +1,5 @@
 (function() {
-  var formats, getOrderedMatches, hasMatches, log, makeArray, stringToArgs, _log;
+  var formats, getOrderedMatches, hasMatches, isIE, isSafari, log, makeArray, stringToArgs, _log;
   if (!(window.console && window.console.log)) {
     return;
   }
@@ -94,10 +94,16 @@
     }
     return [str].concat(styles);
   };
-  if (/Chrome/.test(navigator.userAgent)) {
-    window.log = log;
-  } else {
+  isSafari = function() {
+    return /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+  };
+  isIE = function() {
+    return /MSIE/.test(navigator.userAgent);
+  };
+  if (isSafari() || isIE()) {
     window.log = _log;
+  } else {
+    window.log = log;
   }
   window.log.l = _log;
 }).call(this);
