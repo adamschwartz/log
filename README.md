@@ -1,6 +1,6 @@
 ## Log
 
-> console.log for the bold and reckless
+> Console.log with style
 
 ### [Demo](http://adamschwartz.co/log)
 
