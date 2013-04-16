@@ -83,7 +83,7 @@
       return a.match.index - b.match.index;
     });
   };
-  stringToArgs = function(str, args) {
+  stringToArgs = function(str) {
     var firstMatch, matches, styles;
     styles = [];
     while (hasMatches(str)) {

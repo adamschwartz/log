@@ -61,7 +61,7 @@ getOrderedMatches = (str) ->
 
     return matches.sort((a, b) -> a.match.index - b.match.index)
 
-stringToArgs = (str, args) ->
+stringToArgs = (str) ->
     styles = []
 
     while hasMatches str
