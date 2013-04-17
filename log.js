@@ -1,5 +1,5 @@
 (function() {
-  var formats, getOrderedMatches, hasMatches, isIE, isSafari, log, makeArray, stringToArgs, _log;
+  var formats, getOrderedMatches, hasMatches, isIE, isSafari, log, makeArray, safariSupport, stringToArgs, _log;
   if (!(window.console && window.console.log)) {
     return;
   }
@@ -100,7 +100,15 @@
   isIE = function() {
     return /MSIE/.test(navigator.userAgent);
   };
-  if (isSafari() || isIE()) {
+  safariSupport = function() {
+    var m;
+    m = navigator.userAgent.match(/AppleWebKit\/(\d+)\.(\d+)(\.|\+|\s)/);
+    if (!m) {
+      return false;
+    }
+    return 537.38 >= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100);
+  };
+  if ((isSafari() && !safariSupport()) || isIE()) {
     window.log = _log;
   } else {
     window.log = log;
