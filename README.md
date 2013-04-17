@@ -13,6 +13,14 @@
     - `code` &mdash; ``log('this word `code`')``
 - Use a custom syntax to style text however you want: `log('this is [c="color: red"]red[c]')`.
 
+### Support
+
+Stylized logs are supported in the following browsers:
+
+- Chrome 26+
+- Firefox with Firebug
+- Safari Nightly (537.38+)
+
 ### Screenshot
 
 ![](https://raw.github.com/adamschwartz/log/gh-pages/screenshot.png)
