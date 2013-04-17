@@ -76,8 +76,15 @@ stringToArgs = (str) ->
 isSafari = -> /Safari/.test(navigator.userAgent) and /Apple Computer/.test(navigator.vendor)
 isIE = -> /MSIE/.test(navigator.userAgent)
 
+# Safari starting supporting stylized logs in Nightly 537.38+
+# See https://github.com/adamschwartz/log/issues/6
+safariSupport = ->
+    m = navigator.userAgent.match /AppleWebKit\/(\d+)\.(\d+)(\.|\+|\s)/
+    return false unless m
+    return 537.38 >= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100)
+
 # Export
-if isSafari() or isIE()
+if (isSafari() and not safariSupport()) or isIE()
     window.log = _log
 else
     window.log = log
