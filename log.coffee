@@ -38,9 +38,9 @@ formats = [{
     styles: -> ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', '']
 }, {
     # Custom syntax: [c="color: red"]red[c]
-    regex: /\[c\=\"(.*)\"\](.*)\[c\]/
-    replacer: (m, p1, p2) -> "%c#{p2}%c"
-    styles: (match) -> [match[1], '']
+    regex: /\[c\=([\"\'])(.*)\1\](.*)\[c\]/
+    replacer: (m, p2, p3) -> "%c#{p3}%c"
+    styles: (match) -> [match[2], '']
 }]
 
 hasMatches = (str) ->

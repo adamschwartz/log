@@ -58,12 +58,12 @@
         return ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', ''];
       }
     }, {
-      regex: /\[c\=\"(.*)\"\](.*)\[c\]/,
-      replacer: function(m, p1, p2) {
-        return "%c" + p2 + "%c";
+      regex: /\[c\=([\"\'])(.*)\1\](.*)\[c\]/,
+      replacer: function(m, p2, p3) {
+        return "%c" + p3 + "%c";
       },
       styles: function(match) {
-        return [match[1], ''];
+        return [match[2], ''];
       }
     }
   ];
