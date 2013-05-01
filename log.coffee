@@ -15,6 +15,9 @@ log = ->
 _log = ->
     console.log.apply console, makeArray(arguments)
 
+window.__defineGetter__ "clear", ->
+	  clear()
+
 makeArray = (arrayLikeThing) ->
     Array::slice.call arrayLikeThing
 

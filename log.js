@@ -24,6 +24,10 @@
     return console.log.apply(console, makeArray(arguments));
   };
 
+  window.__defineGetter__("clear", function() {
+    return clear();
+  });
+
   makeArray = function(arrayLikeThing) {
     return Array.prototype.slice.call(arrayLikeThing);
   };
