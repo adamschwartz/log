@@ -27,4 +27,4 @@ Stylized logs are supported in the following browsers:
 
 ### Implementations
 
-- Ruby on Rails – [https://github.com/vlado/rails_javascript_log](https://github.com/vlado/rails_javascript_log)
+- Ruby on Rails — [https://github.com/vlado/rails_javascript_log](https://github.com/vlado/rails_javascript_log)
