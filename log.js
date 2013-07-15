@@ -106,7 +106,7 @@
     if (!m) {
       return false;
     }
-    return 537.38 >= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100);
+    return 537.38 <= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100);
   };
   if ((isSafari() && !safariSupport()) || isIE()) {
     window.log = _log;
