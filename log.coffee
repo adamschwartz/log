@@ -81,7 +81,7 @@ isIE = -> /MSIE/.test(navigator.userAgent)
 safariSupport = ->
     m = navigator.userAgent.match /AppleWebKit\/(\d+)\.(\d+)(\.|\+|\s)/
     return false unless m
-    return 537.38 >= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100)
+    return 537.38 <= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100)
 
 # Export
 if (isSafari() and not safariSupport()) or isIE()
