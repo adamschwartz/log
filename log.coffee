@@ -35,7 +35,7 @@ formats = [{
     styles: -> ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', '']
 }, {
     # Custom syntax: [c="color: red"]red[c]
-    regex: /\[c\=\"([^\")]+)\"\]([^\[)]+)\[c\]/
+    regex: /\[c\=(?:\")?([^\"]+)(?:\")?\]([^\[]+)\[c\]/
     replacer: (m, p1, p2) -> "%c#{p2}%c"
     styles: (match) -> [match[1], '']
 }]
