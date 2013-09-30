@@ -1,0 +1,60 @@
+<head>
+<title>Log Test Suite</title>
+<style>body { font-family: 'Helvetica Neue', sans-serif }</style>
+<script src="log.js"></script>
+<script>
+log('[c="font-family: \'Helvetica Neue\', Helvetica, Arial, sans-serif; color: #fff; font-size: 20px; padding: 15px 20px; background: #444; border-radius: 4px; line-height: 100px; text-shadow: 0 1px #000"]Log Test Suite[c]');
+var codeStyle = 'background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)';
+var bold = 'font-weight: bold';
+var italic = 'font-style: italic';
+var testHeaderStyle = 'font-weight: bold; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; color: #444; padding: 8px 0; line-height: 40px';
+var testNumber = 1;
+var testHeader = function() {
+    log.l('%cTest ' + (testNumber++), testHeaderStyle);
+};
+
+testHeader();
+log.l('Expected:');
+log.l('%citalic%c and %cbold%c', italic, '', bold, '');
+log.l('Result:');
+log('*italic* and _bold_');
+
+testHeader();
+log.l('Expected:');
+log.l('%cbold (with parentheses)%c', bold, '');
+log.l('Result:');
+log('_bold (with parentheses)_');
+
+testHeader();
+log.l('Expected:');
+log.l('%citalic (with parentheses)%c', italic, '');
+log.l('Result:');
+log('*italic (with parentheses)*');
+
+testHeader();
+log.l('Expected:');
+log.l('%citalic%c and %cbold%c. %cthis is italic%c and %cthis is bold%c.', italic, '', bold, '', italic, '', bold, '');
+log.l('Result:');
+log('*italic* and _bold_. *this is italic* and _this is bold_.');
+
+testHeader();
+log.l('Expected:');
+log.l('this is bold link: %chttp://google.com%c', bold, '');
+log.l('Result:');
+log('this is bold link: _http://google.com_');
+
+testHeader();
+log.l('Expected:');
+log.l('%ca == b', codeStyle);
+log.l('Result:');
+log('`a == b`');
+
+testHeader();
+log.l('Expected:');
+log.l('%ca == (b + c)', codeStyle);
+log.l('Result:');
+log('`a == (b + c)`');
+</script>
+</head>
+<body>
+Open the console
