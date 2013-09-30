@@ -1,5 +1,5 @@
 (function() {
-  var formats, getOrderedMatches, hasMatches, isIE, isSafari, log, makeArray, safariSupport, stringToArgs, _log;
+  var ffSupport, formats, getOrderedMatches, hasMatches, isFF, isIE, isOpera, isSafari, log, makeArray, operaSupport, safariSupport, stringToArgs, _log;
   if (!(window.console && window.console.log)) {
     return;
   }
@@ -97,6 +97,12 @@
   isSafari = function() {
     return /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
   };
+  isOpera = function() {
+    return /OPR/.test(navigator.userAgent) && /Opera/.test(navigator.vendor);
+  };
+  isFF = function() {
+    return /Firefox/.test(navigator.userAgent);
+  };
   isIE = function() {
     return /MSIE/.test(navigator.userAgent);
   };
@@ -108,7 +114,18 @@
     }
     return 537.38 <= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100);
   };
-  if ((isSafari() && !safariSupport()) || isIE()) {
+  operaSupport = function() {
+    var m;
+    m = navigator.userAgent.match(/OPR\/(\d+)\./);
+    if (!m) {
+      return false;
+    }
+    return 15 <= parseInt(m[1], 10);
+  };
+  ffSupport = function() {
+    return window.console.firebug || window.console.exception;
+  };
+  if (isIE() || (isFF() && !ffSupport()) || (isOpera() && !operaSupport()) || (isSafari() && !safariSupport())) {
     window.log = _log;
   } else {
     window.log = log;

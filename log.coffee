@@ -72,8 +72,12 @@ stringToArgs = (str) ->
 
     [str].concat styles
 
-# TODO - replace these with a feature test
+# Browser detection
+# https://twitter.com/paul_irish/status/384789864396226560
+
 isSafari = -> /Safari/.test(navigator.userAgent) and /Apple Computer/.test(navigator.vendor)
+isOpera = -> /OPR/.test(navigator.userAgent) and /Opera/.test(navigator.vendor)
+isFF = -> /Firefox/.test(navigator.userAgent)
 isIE = -> /MSIE/.test(navigator.userAgent)
 
 # Safari starting supporting stylized logs in Nightly 537.38+
@@ -83,9 +87,21 @@ safariSupport = ->
     return false unless m
     return 537.38 <= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100)
 
+# Opera
+operaSupport = ->
+    m = navigator.userAgent.match /OPR\/(\d+)\./
+    return false unless m
+    return 15 <= parseInt(m[1], 10)
+
+# Detect for Firebug http://stackoverflow.com/a/398120/131898
+ffSupport = ->
+    window.console.firebug or window.console.exception
+
 # Export
-if (isSafari() and not safariSupport()) or isIE()
+
+if isIE() or (isFF() and not ffSupport()) or (isOpera() and not operaSupport()) or (isSafari() and not safariSupport())
     window.log = _log
 else
     window.log = log
+
 window.log.l = _log
