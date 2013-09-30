@@ -20,17 +20,17 @@ makeArray = (arrayLikeThing) ->
 
 formats = [{
     # Italic
-    regex: /\*([^\*)]+)\*/
+    regex: /\*([^\*]+)\*/
     replacer: (m, p1) -> "%c#{p1}%c"
     styles: -> ['font-style: italic', '']
 }, {
     # Bold
-    regex: /\_([^\_)]+)\_/
+    regex: /\_([^\_]+)\_/
     replacer: (m, p1) -> "%c#{p1}%c"
     styles: -> ['font-weight: bold', '']
 }, {
     # Code
-    regex: /\`([^\`)]+)\`/
+    regex: /\`([^\`]+)\`/
     replacer: (m, p1) -> "%c#{p1}%c"
     styles: -> ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', '']
 }, {
