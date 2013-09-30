@@ -23,7 +23,7 @@
   };
   formats = [
     {
-      regex: /\*([^\*)]+)\*/,
+      regex: /\*([^\*]+)\*/,
       replacer: function(m, p1) {
         return "%c" + p1 + "%c";
       },
@@ -31,7 +31,7 @@
         return ['font-style: italic', ''];
       }
     }, {
-      regex: /\_([^\_)]+)\_/,
+      regex: /\_([^\_]+)\_/,
       replacer: function(m, p1) {
         return "%c" + p1 + "%c";
       },
@@ -39,7 +39,7 @@
         return ['font-weight: bold', ''];
       }
     }, {
-      regex: /\`([^\`)]+)\`/,
+      regex: /\`([^\`]+)\`/,
       replacer: function(m, p1) {
         return "%c" + p1 + "%c";
       },
@@ -47,7 +47,7 @@
         return ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', ''];
       }
     }, {
-      regex: /\[c\=\"([^\")]+)\"\]([^\[)]+)\[c\]/,
+      regex: /\[c\=(?:\")?([^\"]+)(?:\")?\]([^\[]+)\[c\]/,
       replacer: function(m, p1, p2) {
         return "%c" + p2 + "%c";
       },
