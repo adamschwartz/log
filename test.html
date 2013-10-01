@@ -54,6 +54,18 @@ log.l('Expected:');
 log.l('%ca == (b + c)', codeStyle);
 log.l('Result:');
 log('`a == (b + c)`');
+
+testHeader();
+log.l('Expected:');
+log.l('%cred', 'color: red');
+log.l('Result:');
+log("[c=\"color:red\"]red[c]");
+
+testHeader();
+log.l('Expected:');
+log.l('%cred %cand %c[blue]', 'color: red', '', 'color: blue');
+log.l('Result:');
+log("[c=\"color:red\"]red[c] and [c=\'color:blue\'][blue][c]");
 </script>
 </head>
 <body>

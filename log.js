@@ -47,7 +47,7 @@
         return ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', ''];
       }
     }, {
-      regex: /\[c\=(?:\")?([^\"]+)(?:\")?\]([^\[]+)\[c\]/,
+      regex: /\[c\=(?:\"|\')?((?:(?!(?:\"|\')\]).)*)(?:\"|\')?\]((?:(?!\[c\]).)*)\[c\]/,
       replacer: function(m, p1, p2) {
         return "%c" + p2 + "%c";
       },
