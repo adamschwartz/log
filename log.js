@@ -1,8 +1,10 @@
 (function() {
   var ffSupport, formats, getOrderedMatches, hasMatches, isFF, isIE, isOpera, isSafari, log, makeArray, operaSupport, safariSupport, stringToArgs, _log;
+
   if (!(window.console && window.console.log)) {
     return;
   }
+
   log = function() {
     var args;
     args = [];
@@ -15,12 +17,15 @@
     });
     return _log.apply(window, args);
   };
+
   _log = function() {
     return console.log.apply(console, makeArray(arguments));
   };
+
   makeArray = function(arrayLikeThing) {
     return Array.prototype.slice.call(arrayLikeThing);
   };
+
   formats = [
     {
       regex: /\*([^\*]+)\*/,
@@ -56,6 +61,7 @@
       }
     }
   ];
+
   hasMatches = function(str) {
     var _hasMatches;
     _hasMatches = false;
@@ -66,6 +72,7 @@
     });
     return _hasMatches;
   };
+
   getOrderedMatches = function(str) {
     var matches;
     matches = [];
@@ -83,6 +90,7 @@
       return a.match.index - b.match.index;
     });
   };
+
   stringToArgs = function(str) {
     var firstMatch, matches, styles;
     styles = [];
@@ -94,18 +102,23 @@
     }
     return [str].concat(styles);
   };
+
   isSafari = function() {
     return /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
   };
+
   isOpera = function() {
     return /OPR/.test(navigator.userAgent) && /Opera/.test(navigator.vendor);
   };
+
   isFF = function() {
     return /Firefox/.test(navigator.userAgent);
   };
+
   isIE = function() {
     return /MSIE/.test(navigator.userAgent);
   };
+
   safariSupport = function() {
     var m;
     m = navigator.userAgent.match(/AppleWebKit\/(\d+)\.(\d+)(\.|\+|\s)/);
@@ -114,6 +127,7 @@
     }
     return 537.38 <= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100);
   };
+
   operaSupport = function() {
     var m;
     m = navigator.userAgent.match(/OPR\/(\d+)\./);
@@ -122,13 +136,17 @@
     }
     return 15 <= parseInt(m[1], 10);
   };
+
   ffSupport = function() {
     return window.console.firebug || window.console.exception;
   };
+
   if (isIE() || (isFF() && !ffSupport()) || (isOpera() && !operaSupport()) || (isSafari() && !safariSupport())) {
     window.log = _log;
   } else {
     window.log = log;
   }
+
   window.log.l = _log;
+
 }).call(this);
