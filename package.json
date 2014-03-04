@@ -1,5 +1,5 @@
 {
-    "name": "log",
+    "name": "log-with-style",
     "version": "0.1.0",
     "description": "Console.log with style",
     "author": "Adam Schwartz <adam.flynn.schwartz@gmail.com>",
