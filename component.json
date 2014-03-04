@@ -1,7 +1,7 @@
 {
   "name": "log",
   "repo": "adamschwartz/log",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Console.log with style",
   "keywords": [],
   "main": "log.js",
