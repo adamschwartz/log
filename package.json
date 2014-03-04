@@ -1,6 +1,6 @@
 {
     "name": "log-with-style",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Console.log with style",
     "author": "Adam Schwartz <adam.flynn.schwartz@gmail.com>",
     "license": "MIT",
