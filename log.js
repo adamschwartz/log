@@ -1,5 +1,5 @@
 (function() {
-  var ffSupport, formats, getOrderedMatches, hasMatches, isFF, isIE, isOpera, isSafari, log, makeArray, operaSupport, safariSupport, stringToArgs, _log;
+  var exportedLog, ffSupport, formats, getOrderedMatches, hasMatches, isFF, isIE, isOpera, isSafari, log, makeArray, operaSupport, safariSupport, stringToArgs, _log;
 
   if (!(window.console && window.console.log)) {
     return;
@@ -142,11 +142,19 @@
   };
 
   if (isIE() || (isFF() && !ffSupport()) || (isOpera() && !operaSupport()) || (isSafari() && !safariSupport())) {
-    window.log = _log;
+    exportedLog = _log;
   } else {
-    window.log = log;
+    exportedLog = log;
   }
 
-  window.log.l = _log;
+  exportedLog.l = _log;
+
+  if (typeof define === 'function' && define.amd) {
+    define(exportedLog);
+  } else if (typeof exports !== 'undefined') {
+    module.exports = exportedLog;
+  } else {
+    window.log = exportedLog;
+  }
 
 }).call(this);
