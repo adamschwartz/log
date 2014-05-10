@@ -100,8 +100,15 @@ ffSupport = ->
 # Export
 
 if isIE() or (isFF() and not ffSupport()) or (isOpera() and not operaSupport()) or (isSafari() and not safariSupport())
-    window.log = _log
+    exportedLog = _log
 else
-    window.log = log
+    exportedLog = log
 
-window.log.l = _log
+exportedLog.l = _log
+
+if typeof define is 'function' and define.amd
+  define exportedLog
+else if typeof exports isnt 'undefined'
+  module.exports = exportedLog
+else
+  window.log = exportedLog
