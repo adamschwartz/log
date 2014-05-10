@@ -4,6 +4,7 @@
     "description": "Console.log with style",
     "author": "Adam Schwartz <adam.flynn.schwartz@gmail.com>",
     "license": "MIT",
+    "main": "log.js",
     "devDependencies": {
         "grunt-contrib-coffee": "~0.7.0",
         "coffee-script": "~1.6.3",
