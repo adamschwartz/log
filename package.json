@@ -1,8 +1,9 @@
 {
     "name": "log-with-style",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Console.log with style",
     "author": "Adam Schwartz <adam.flynn.schwartz@gmail.com>",
+    "repository": "git://github.com/adamschwartz/log",
     "license": "MIT",
     "main": "log.js",
     "devDependencies": {
