@@ -1,14 +1,13 @@
 {
     "name": "log",
-    "version": "0.1.5",
+    "version": "0.2.0",
     "homepage": "http://adamschwartz.co/log",
     "authors": [
         "Adam Schwartz <adam.flynn.schwartz@gmail.com>"
     ],
     "description": "Console.log with style",
     "main": [
-        "log.js",
-        "log.min.js"
+        "log.js"
     ],
     "keywords": [
         "log",
