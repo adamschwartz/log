@@ -107,7 +107,7 @@ else
 exportedLog.l = _log
 
 if typeof define is 'function' and define.amd
-  define exportedLog
+  define -> exportedLog
 else if typeof exports isnt 'undefined'
   module.exports = exportedLog
 else

@@ -150,7 +150,7 @@
   exportedLog.l = _log;
 
   if (typeof define === 'function' && define.amd) {
-    define(function defineLog() {
+    define(function() {
       return exportedLog;
     });
   } else if (typeof exports !== 'undefined') {
