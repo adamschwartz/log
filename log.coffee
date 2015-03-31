@@ -13,7 +13,7 @@ log = ->
     _log.apply window, args
 
 _log = ->
-    console.log.apply console, makeArray(arguments)
+    Function.prototype.apply.call console.log, console, makeArray(arguments)
 
 makeArray = (arrayLikeThing) ->
     Array::slice.call arrayLikeThing

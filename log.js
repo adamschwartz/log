@@ -19,7 +19,7 @@
   };
 
   _log = function() {
-    return console.log.apply(console, makeArray(arguments));
+    return Function.prototype.apply.call(console.log, console, makeArray(arguments));
   };
 
   makeArray = function(arrayLikeThing) {
