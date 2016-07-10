@@ -2,7 +2,7 @@
 
 > Console.log with style
 
-### [Demo](http://adamschwartz.co/log)
+### [Demo](http://adamschwartz.co/log/)
 
 ### Features
 
