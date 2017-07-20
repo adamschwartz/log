@@ -13,6 +13,7 @@
     - `code` &mdash; ``log('this word `code`')``
 - Use a custom syntax to style text however you want: `log('this is [c="color: red"]red[c]')`.
 
+<!--
 ### Installation
 
 The easiest way to add `log` to a website is with Eager.
@@ -20,6 +21,7 @@ The easiest way to add `log` to a website is with Eager.
 <a href="https://eager.io/app/tzO2LussZBpU/install?source=button">
   <img src="https://install.eager.io/install-button.png" border="0" width="126">
 </a>
+-->
 
 ### Support
 
