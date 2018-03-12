@@ -1,4 +1,4 @@
-(function() {
+(function(root) {
   var exportedLog,
     ffSupport,
     formats,
@@ -13,9 +13,11 @@
     operaSupport,
     safariSupport,
     stringToArgs,
+    restorePreviousLogRef,
+    previousLog,
     _log;
 
-  if (!(window.console && window.console.log)) {
+  if (!(root.console && root.console.log)) {
     return;
   }
 
@@ -29,7 +31,7 @@
         return args.push(arg);
       }
     });
-    return _log.apply(window, args);
+    return _log.apply(root, args);
   };
 
   _log = function() {
@@ -76,7 +78,7 @@
       }
     },
     {
-      regex: /<style\=(?:\"|\')?((?:(?!(?:\"|\')>).)*)(?:\"|\')?>((?:(?!<\/style>).)*)<\/style>/,
+      regex: /\[c\=(?:\"|\')?((?:(?!(?:\"|\')\]).)*)(?:\"|\')?\]((?:(?!\[c\]).)*)\[c\]/,
       replacer: function(m, p1, p2) {
         return '%c' + p2 + '%c';
       },
@@ -165,7 +167,7 @@
   };
 
   ffSupport = function() {
-    return window.console.firebug || window.console.exception;
+    return root.console.firebug || root.console.exception;
   };
 
   if (
@@ -181,13 +183,29 @@
 
   exportedLog.l = _log;
 
+  //Save previous value of the 'log' variable
+  previousLog = root.log;
+
+  //Give control of the _ variable back to its previous owner. Returns a reference to the exportedLog object.
+  restorePreviousLogRef = function() {
+    root.log = previousLog;
+    return exportedLog;
+  };
+
   if (typeof define === 'function' && define.amd) {
     define(function() {
-      return exportedLog;
+      return {
+        exportedLog: exportedLog,
+        restorePreviousLogRef: restorePreviousLogRef
+      };
     });
   } else if (typeof exports !== 'undefined') {
-    module.exports = exportedLog;
+    module.exports = {
+      exportedLog: exportedLog,
+      restorePreviousLogRef: restorePreviousLogRef
+    };
   } else {
-    window.log = exportedLog;
+    root.log = exportedLog;
+    root.log.restorePreviousLogRef = restorePreviousLogRef;
   }
-}.call(this));
+})(window);
