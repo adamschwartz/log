@@ -13,7 +13,7 @@
     operaSupport,
     safariSupport,
     stringToArgs,
-    restorePreviousLogRef,
+    exportAndRestore,
     previousLog,
     _log;
 
@@ -181,13 +181,15 @@
     exportedLog = log;
   }
 
+  debugger;
+
   exportedLog.l = _log;
 
   //Save previous value of the 'log' variable
   previousLog = root.log;
 
   //Give control of the _ variable back to its previous owner. Returns a reference to the exportedLog object.
-  restorePreviousLogRef = function() {
+  exportAndRestore = function() {
     root.log = previousLog;
     return exportedLog;
   };
@@ -196,16 +198,16 @@
     define(function() {
       return {
         exportedLog: exportedLog,
-        restorePreviousLogRef: restorePreviousLogRef
+        exportAndRestore: exportAndRestore
       };
     });
   } else if (typeof exports !== 'undefined') {
     module.exports = {
       exportedLog: exportedLog,
-      restorePreviousLogRef: restorePreviousLogRef
+      exportAndRestore: exportAndRestore
     };
   } else {
     root.log = exportedLog;
-    root.log.restorePreviousLogRef = restorePreviousLogRef;
+    root.log.exportAndRestore = exportAndRestore;
   }
 })(window);

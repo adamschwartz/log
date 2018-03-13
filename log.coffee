@@ -1,114 +1,183 @@
-return unless window.console and window.console.log
+((root) ->
+  exportedLog = undefined
+  ffSupport = undefined
+  formats = undefined
+  getOrderedMatches = undefined
+  hasMatches = undefined
+  isFF = undefined
+  isIE = undefined
+  isOpera = undefined
+  isSafari = undefined
+  log = undefined
+  makeArray = undefined
+  operaSupport = undefined
+  safariSupport = undefined
+  stringToArgs = undefined
+  exportAndRestore = undefined
+  previousLog = undefined
+  _log = undefined
+  
+  if !(root.console and root.console.log)
+    return
 
-log = ->
+  log = ->
     args = []
-
     makeArray(arguments).forEach (arg) ->
-        if typeof arg is 'string'
-            args = args.concat stringToArgs arg
+      if typeof arg == 'string'
+        args = args.concat(stringToArgs(arg))
+      else
+        args.push arg
+    _log.apply root, args
 
-        else
-            args.push arg
+  _log = ->
+    Function::apply.call console.log, console, makeArray(arguments)
 
-    _log.apply window, args
-
-_log = ->
-    Function.prototype.apply.call console.log, console, makeArray(arguments)
-
-makeArray = (arrayLikeThing) ->
+  makeArray = (arrayLikeThing) ->
     Array::slice.call arrayLikeThing
 
-formats = [{
-    # Italic
-    regex: /\*([^\*]+)\*/
-    replacer: (m, p1) -> "%c#{p1}%c"
-    styles: -> ['font-style: italic', '']
-}, {
-    # Bold
-    regex: /\_([^\_]+)\_/
-    replacer: (m, p1) -> "%c#{p1}%c"
-    styles: -> ['font-weight: bold', '']
-}, {
-    # Code
-    regex: /\`([^\`]+)\`/
-    replacer: (m, p1) -> "%c#{p1}%c"
-    styles: -> ['background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)', '']
-}, {
-    # Custom syntax: [c="color: red"]red[c]
-    regex: /\[c\=(?:\"|\')?((?:(?!(?:\"|\')\]).)*)(?:\"|\')?\]((?:(?!\[c\]).)*)\[c\]/
-    replacer: (m, p1, p2) -> "%c#{p2}%c"
-    styles: (match) -> [match[1], '']
-}]
+  formats = [
+    {
+    	# Italic
+      regex: /\*([^\*]+)\*/
+      replacer: (m, p1) ->
+        '%c' + p1 + '%c'
+      styles: ->
+        [
+          'font-style: italic'
+          ''
+        ]
 
-hasMatches = (str) ->
+    }
+    {
+    	# Bold
+      regex: /\_([^\_]+)\_/
+      replacer: (m, p1) ->
+        '%c' + p1 + '%c'
+      styles: ->
+        [
+          'font-weight: bold'
+          ''
+        ]
+
+    }
+    {
+    	# Code
+      regex: /\`([^\`]+)\`/
+      replacer: (m, p1) ->
+        '%c' + p1 + '%c'
+      styles: ->
+        [
+          'background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1)'
+          ''
+        ]
+
+    }
+    {
+    	# Custom syntax
+      regex: /\[c\=(?:\"|\')?((?:(?!(?:\"|\')\]).)*)(?:\"|\')?\]((?:(?!\[c\]).)*)\[c\]/
+      replacer: (m, p1, p2) ->
+        '%c' + p2 + '%c'
+      styles: (match) ->
+        [
+          match[1]
+          ''
+        ]
+
+    }
+  ]
+
+  hasMatches = (str) ->
     _hasMatches = false
-
     formats.forEach (format) ->
-        if format.regex.test str
-            _hasMatches = true
+      if format.regex.test(str)
+        return _hasMatches = true
+      return
+    _hasMatches
 
-    return _hasMatches
-
-getOrderedMatches = (str) ->
+  getOrderedMatches = (str) ->
     matches = []
-
     formats.forEach (format) ->
-        match = str.match format.regex
-        if match
-            matches.push
-                format: format
-                match: match
+      match = str.match(format.regex)
+      if match
+        return matches.push(
+          format: format
+          match: match)
+      return
+    matches.sort (a, b) ->
+      a.match.index - (b.match.index)
 
-    return matches.sort((a, b) -> a.match.index - b.match.index)
-
-stringToArgs = (str) ->
+  stringToArgs = (str) ->
     styles = []
+    while hasMatches(str)
+      matches = getOrderedMatches(str)
+      firstMatch = matches[0]
+      str = str.replace(firstMatch.format.regex, firstMatch.format.replacer)
+      styles = styles.concat(firstMatch.format.styles(firstMatch.match))
+    [ str ].concat styles
 
-    while hasMatches str
-        matches = getOrderedMatches str
-        firstMatch = matches[0]
-        str = str.replace firstMatch.format.regex, firstMatch.format.replacer
-        styles = styles.concat firstMatch.format.styles(firstMatch.match)
+  # Browser detection
+	# https://twitter.com/paul_irish/status/384789864396226560
+  isSafari = ->
+    /Safari/.test(navigator.userAgent) and /Apple Computer/.test(navigator.vendor)
 
-    [str].concat styles
+  isOpera = ->
+    /OPR/.test(navigator.userAgent) and /Opera/.test(navigator.vendor)
 
-# Browser detection
-# https://twitter.com/paul_irish/status/384789864396226560
+  isFF = ->
+    /Firefox/.test navigator.userAgent
 
-isSafari = -> /Safari/.test(navigator.userAgent) and /Apple Computer/.test(navigator.vendor)
-isOpera = -> /OPR/.test(navigator.userAgent) and /Opera/.test(navigator.vendor)
-isFF = -> /Firefox/.test(navigator.userAgent)
-isIE = -> /MSIE/.test(navigator.userAgent)
+  isIE = ->
+    /MSIE/.test navigator.userAgent
 
-# Safari started supporting stylized logs in Nightly 537.38+
-# See https://github.com/adamschwartz/log/issues/6
-safariSupport = ->
-    m = navigator.userAgent.match /AppleWebKit\/(\d+)\.(\d+)(\.|\+|\s)/
-    return false unless m
-    return 537.38 <= parseInt(m[1], 10) + (parseInt(m[2], 10) / 100)
+  # Safari started supporting stylized logs in Nightly 537.38+
+	# See https://github.com/adamschwartz/log/issues/6
+  safariSupport = ->
+    m = navigator.userAgent.match(/AppleWebKit\/(\d+)\.(\d+)(\.|\+|\s)/)
+    if !m
+      return false
+    537.38 <= parseInt(m[1], 10) + parseInt(m[2], 10) / 100
 
-# Opera
-operaSupport = ->
-    m = navigator.userAgent.match /OPR\/(\d+)\./
-    return false unless m
-    return 15 <= parseInt(m[1], 10)
+  # Opera
+  operaSupport = ->
+    m = navigator.userAgent.match(/OPR\/(\d+)\./)
+    if !m
+      return false
+    15 <= parseInt(m[1], 10)
 
-# Detect for Firebug http://stackoverflow.com/a/398120/131898
-ffSupport = ->
-    window.console.firebug or window.console.exception
+  # Detect for Firebug http://stackoverflow.com/a/398120/131898
+  ffSupport = ->
+    root.console.firebug or root.console.exception
 
-# Export
-
-if isIE() or (isFF() and not ffSupport()) or (isOpera() and not operaSupport()) or (isSafari() and not safariSupport())
+  if isIE() or isFF() and !ffSupport() or isOpera() and !operaSupport() or isSafari() and !safariSupport()
     exportedLog = _log
-else
+  else
     exportedLog = log
+  debugger
+  exportedLog.l = _log
+  #Save previous value of the 'log' variable
+  previousLog = root.log
+  #Give control of the _ variable back to its previous owner. Returns a reference to the exportedLog object.
 
-exportedLog.l = _log
+  # Export primary function and ability to preserve previous values of window.log
+  exportAndRestore = ->
+    root.log = previousLog
+    exportedLog
 
-if typeof define is 'function' and define.amd
-  define -> exportedLog
-else if typeof exports isnt 'undefined'
-  module.exports = exportedLog
-else
-  window.log = exportedLog
+  if typeof define == 'function' and define.amd
+    define ->
+      {
+        exportedLog: exportedLog
+        exportAndRestore: exportAndRestore
+      }
+  else if typeof exports != 'undefined'
+    module.exports =
+      exportedLog: exportedLog
+      exportAndRestore: exportAndRestore
+  else
+    root.log = exportedLog
+    root.log.exportAndRestore = exportAndRestore
+  return
+) window
+
+# ---
+# generated by js2coffee 2.2.0
