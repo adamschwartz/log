@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<title>log · console.log with style · Adam Schwartz</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<link rel="stylesheet" href="https://ui.components.workers.dev?components=Markdown,Button"/>
+<link rel="stylesheet" href="./site-resources/index.css"/>
+
+<div class="page">
+  <div class="page-content">
+    <div class="Markdown">
+      <h1>log</h1>
+      <p><code>console.log</code> with style</p>
+      <p>
+        <a class="Button Button-is-primary Button-is-elevated" style="padding: .25em .6em; background: #4a4c69" href="https://github.com/adamschwartz/log">Github</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="devtools docked platform-mac">
+    <div class="vbox flex-auto tabbed-pane">
+      <div class="widget vbox tabbed-pane-shadow">
+        <div class="tabbed-pane-header">
+          <div class="tabbed-pane-left-toolbar toolbar hidden"></div>
+          <div class="tabbed-pane-header-contents">
+            <div class="tabbed-pane-header-tabs" role="tablist" aria-label="Panels" style="">
+              <div class="tabbed-pane-header-tab selected" id="tab-console" role="tab" aria-selected="true" aria-label="Console" tabindex="0" style="cursor: pointer; width: 68px;">
+                <span class="tabbed-pane-header-tab-title">Console</span>
+              </div>
+              <div class="tabbed-pane-header-tab" id="tab-sources" role="tab" aria-selected="false" aria-label="Sources" style="cursor: pointer; width: 68px;">
+                <span class="tabbed-pane-header-tab-title">Sources</span>
+              </div>
+            </div>
+            <div class="tabbed-pane-tab-slider enabled" style="width: 68px; transform: translateX(0px) scaleY(0.75);"></div>
+          </div>
+          <div class="tabbed-pane-right-toolbar toolbar">
+            <div class="toolbar-shadow"><div class="toolbar-item hidden"><div class="hidden" aria-label=""></div><div></div></div><div class="toolbar-divider toolbar-item"></div><button class="toolbar-button toolbar-item toolbar-has-glyph" aria-label="Settings"><span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-settings-gear icon-mask" style="--spritesheet-position:-168px 168px; width: 28px; height: 24px;"></span><div class="toolbar-text hidden"></div></button><button class="toolbar-button toolbar-item toolbar-has-glyph" aria-label="Customize and control DevTools" role="button" aria-haspopup="true"><span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-menu icon-mask" style="--spritesheet-position:-56px 96px; width: 28px; height: 24px;"></span><div class="toolbar-text hidden"></div></button><button class="toolbar-button toolbar-item toolbar-has-glyph hidden" aria-label="Close"><span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-delete icon-mask" style="--spritesheet-position:-84px 216px; width: 28px; height: 24px;"></span><div class="toolbar-text hidden"></div></button><slot></slot></div>
+          </div>
+        </div>
+        <div class="tabbed-pane-content">
+          <div class="widget vbox flex-auto view-container overflow-auto">
+            <div class="widget vbox panel console">
+              <div class="widget vbox console-view">
+                <div class="console-toolbar-container">
+                  <div class="console-main-toolbar toolbar">
+                    <div class="toolbar-shadow"><button class="toolbar-button toolbar-item toolbar-has-glyph" aria-label="Show console sidebar"><span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-show-left-sidebar icon-mask" style="--spritesheet-position:-168px 120px; width: 28px; height: 24px;"></span><div class="toolbar-text hidden"></div></button><button class="toolbar-button toolbar-item toolbar-has-glyph" aria-label="Clear console"><span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-clear icon-mask" style="--spritesheet-position:0px 144px; width: 28px; height: 24px;"></span><div class="toolbar-text hidden"></div></button><div class="toolbar-divider toolbar-item"></div><button class="soft-dropdown toolbar-item toolbar-has-dropdown" aria-expanded="false" disabled="" aria-label="JavaScript context: Not selected"><span class="title">top</span><span is="ui-icon" class="spritesheet-smallicons smallicon-triangle-down icon-mask" style="--spritesheet-position:-80px 30px; width: 10px; height: 10px;"></span></button><div class="toolbar-divider toolbar-item"></div><button class="toolbar-button toolbar-item toolbar-has-glyph" aria-label="Create live expression"><span is="ui-icon" class="toolbar-glyph spritesheet-largeicons largeicon-visibility icon-mask" style="--spritesheet-position:-196px 216px; width: 28px; height: 24px;"></span><div class="toolbar-text hidden"></div></button><div class="toolbar-divider toolbar-item"></div><div class="toolbar-input toolbar-item toolbar-input-empty" style="flex-grow: 0.2; flex-shrink: 1; justify-content: flex-start"><div class="text-prompt-root"><div class="toolbar-input-prompt text-prompt" aria-hidden="true" role="textbox" contenteditable="plaintext-only" data-placeholder="Filter" aria-placeholder="Filter"></div></div></span><div class="toolbar-input-clear-button"><span is="ui-icon" class="search-cancel-button spritesheet-mediumicons mediumicon-gray-cross-hover" style="--spritesheet-position:-32px 32px; width: 16px; height: 16px;"></span></div></div><button class="toolbar-button toolbar-item toolbar-has-dropdown" aria-label="Log level: Default levels" role="button" aria-haspopup="true"><span is="ui-icon" class="toolbar-glyph hidden"></span><div class="toolbar-text">Default levels</div><span is="ui-icon" class="toolbar-dropdown-arrow spritesheet-smallicons smallicon-triangle-down icon-mask" style="--spritesheet-position:-80px 30px; width: 10px; height: 10px;"></span></button><div class="toolbar-item"></div></div>
+                  </div>
+                </div>
+                <div class="vbox flex-auto split-widget">
+                  <div class="vbox flex-auto console-searchable-view">
+                    <div id="console-messages" class="monospace" style="overflow: auto;"><div aria-hidden="true" style="height: 0px; color: transparent;">&#65279;</div><div tabindex="0" class="console-group console-group-messages" style="">
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text"><span style="contain: paint; display: inline-block; max-width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(68, 68, 68); padding: 16px 0 0; line-height: 30px; font-weight: bold;">Bold &amp; italics</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text"><span style="contain: paint; display: inline-block; max-width: 100%; font-style: italic;">this is italic</span><span style="contain: paint; display: inline-block; max-width: 100%;"> and </span><span style="contain: paint; display: inline-block; max-width: 100%; font-weight: bold;">this is bold</span><span style="contain: paint; display: inline-block; max-width: 100%;">.</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text"><span style="contain: paint; display: inline-block; max-width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(68, 68, 68); padding: 16px 0 0; line-height: 30px; font-weight: bold;">Inline code</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text">this is code: <span style="contain: paint; display: inline-block; max-width: 100%; background: rgb(255, 255, 219); padding: 1px 5px; border: 1px solid rgba(0, 0, 0, 0.1);">a == b == c</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text"><span style="contain: paint; display: inline-block; max-width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(68, 68, 68); padding: 16px 0 0; line-height: 30px; font-weight: bold;">Color</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text">this is <span style="contain: paint; display: inline-block; max-width: 100%; color: red;">red</span><span style="contain: paint; display: inline-block; max-width: 100%;">. this is </span><span style="contain: paint; display: inline-block; max-width: 100%; color: green;">green</span><span style="contain: paint; display: inline-block; max-width: 100%;">.</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text"><span style="contain: paint; display: inline-block; max-width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(68, 68, 68); padding: 16px 0 0; line-height: 30px; font-weight: bold;">Learn more</span></span></span></div></div>
+
+                      <div tabindex="-1" class="console-message-wrapper console-from-api console-info-level"><div class="console-message"><span class="source-code"><span class="console-message-anchor"><span class="devtools-link" role="link" tabindex="-1">log.js:19</span> </span><span class="console-message-text"><span style="contain: paint; display: inline-block; max-width: 100%; font-weight: bold;"><a href="https://github.com/adamschwartz/log"><span class="devtools-link" role="link" tabindex="-1" style="-webkit-text-stroke: 0px !important; text-decoration: underline !important; color: rgb(84, 84, 84) !important; background-color: rgb(255, 255, 255) !important;">https://github.com/adamschwartz/log</span></a></span></span></span></div></div>
+
+                      <div aria-hidden="true" style="height: 0px; color: transparent;">&#65279;</div>
+
+                      <div class="source-code" id="console-prompt">
+                        <span is="ui-icon" class="console-prompt-icon spritesheet-smallicons smallicon-text-prompt" style="--spritesheet-position:-80px 90px; width: 10px; height: 10px;"></span>
+                        <input type="text" style="font-size: 11px !important; font-family: Menlo, monospace; resize: none; border: none; position: absolute; top: 0; left: 0; padding: 2px 4px; right: 0; color: inherit"/>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/log-with-style"></script>
+<script>
+  (function(){
+    const style = 'font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; color: #444; padding: 16px 0 0; line-height: 30px; font-weight: bold'
+    log.l('%cBold & italics', style)
+    log('*this is italic* and _this is bold_.')
+    log.l('%cInline code', style)
+    log('this is code: `a == b == c`')
+    log.l('%cColor', style)
+    log('this is [c="color: red"]red[c]. this is [c="color: green"]green[c].')
+    log.l('%cLearn more', style)
+    log('_https://github.com/adamschwartz/log_')
+  })();
+</script>

@@ -1,0 +1,48 @@
+@import "devtools.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --color-rgb: 29, 30, 60;
+  --background-color-rgb: 239, 239, 239;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.page {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  font-family: Avenir;
+  font-size: 1.25em;
+  min-height: 320px;
+  display: flex;
+  flex: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--background);
+}
+
+.devtools.docked {
+  border-top: 1px solid #d0d0d0;
+}
+
+@media (max-height: 475px) {
+  .devtools {
+    display: none;
+  }
+}
