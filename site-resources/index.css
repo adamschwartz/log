@@ -343,10 +343,6 @@ span[is=dt-icon-label] {
   margin: 0 22px 0 20px;
 }
 
-.console-prompt-editor-container {
-  min-height: 21px;
-}
-
 .console-message {
   clear: right;
   position: relative;
@@ -544,12 +540,6 @@ span[is=dt-icon-label] {
   color: #333;
 }
 
-.toolbar-select-container {
-  display: inline-flex;
-  flex-shrink: 0;
-  margin-right: 6px;
-}
-
 .toolbar-input {
   width: 120px;
   height: 19px;
@@ -587,10 +577,6 @@ span[is=dt-icon-label] {
 
 .toolbar-input-empty .toolbar-input-clear-button {
   display: none;
-}
-
-.toolbar-prompt-proxy {
-  flex: 1;
 }
 
 .toolbar-input-prompt {
@@ -659,10 +645,6 @@ span[is=dt-icon-label] {
 .tabbed-pane-header-tab-title {
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-.tabbed-pane-header-tab.measuring {
-  visibility: hidden;
 }
 
 .tabbed-pane-header-tab.selected {
